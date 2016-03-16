@@ -1,6 +1,14 @@
 package es.sd.Practica1_SD.modelos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Empleado {
+	
+	@Id
 	String nombre,apellidos;
 	String correoElectronico;
 	String tMovil, tFijo;
