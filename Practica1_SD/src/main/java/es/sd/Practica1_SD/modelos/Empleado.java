@@ -9,10 +9,17 @@ import javax.persistence.Id;
 public class Empleado {
 	
 	@Id
-	String nombre,apellidos;
-	String correoElectronico;
-	String tMovil, tFijo;
-	String tipo;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long empleadoid;
+	
+	private String nombre;
+	private String apellidos;
+	private String correoElectronico;
+	private String tMovil;
+	private String tFijo;
+	private String tipo;
+	
+	public Empleado(){}
 	
 	public Empleado(String nom, String ape, String corr,String mov,String fijo, String tip){
 		this.nombre=nom;

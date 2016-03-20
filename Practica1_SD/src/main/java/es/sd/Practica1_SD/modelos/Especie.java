@@ -9,10 +9,15 @@ import javax.persistence.Id;
 public class Especie {
 	
 	@Id
-	String tipo;
-	String nombreComun;
-	String nombreCientifico;
-	String[] areas;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long especieid;
+	
+	private String nombreCientifico;
+	private String nombreComun;
+	private String tipo;
+	private String[] areas;
+	
+	public Especie(){}
 	
 	public Especie(String tip, String Comun, String Cientifico, String[] a){
 		this.tipo=tip;
