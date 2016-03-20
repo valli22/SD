@@ -3,5 +3,9 @@
 		<h1>Main</h1>
 		<button><a href="consultaEspecie.html">Especie</a></button>
 		<button><a href="consultaPersonal.html">Personal</a></button>
+		<p th:each="comoquierapeter: ${comoquieras}">
+		Hola
+		<span th:text="'esto'+ ${comoquierapeter.nombreComun}"></span>
+		</p>
 	</body>
 </html>

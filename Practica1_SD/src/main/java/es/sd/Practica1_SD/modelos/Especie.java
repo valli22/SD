@@ -1,9 +1,13 @@
 package es.sd.Practica1_SD.modelos;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Especie {
@@ -15,17 +19,15 @@ public class Especie {
 	private String nombreCientifico;
 	private String nombreComun;
 	private String tipo;
-	private String[] areas;
+	@ManyToMany
+	private Collection<Area> areas = new ArrayList<>();
 	
 	public Especie(){}
 	
-	public Especie(String tip, String Comun, String Cientifico, String[] a){
+	public Especie(String tip, String Comun, String Cientifico){
 		this.tipo=tip;
 		this.nombreComun=Comun;
 		this.nombreCientifico=Cientifico;
-		for(int i=0; i<a.length; i++){
-			this.areas[i]=a[i];
-		}
 	}
 
 	public String getTipo() {
@@ -52,11 +54,11 @@ public class Especie {
 		this.nombreCientifico = nombreCientifico;
 	}
 
-	public String[] getAreas() {
+	public Collection<Area> getAreas() {
 		return areas;
 	}
 
-	public void setAreas(String[] areas) {
+	public void setAreas(Collection<Area> areas) {
 		this.areas = areas;
 	}
 
