@@ -23,4 +23,36 @@ public class Especie {
 		}
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getNombreComun() {
+		return nombreComun;
+	}
+
+	public void setNombreComun(String nombreComun) {
+		this.nombreComun = nombreComun;
+	}
+
+	public String getNombreCientifico() {
+		return nombreCientifico;
+	}
+
+	public void setNombreCientifico(String nombreCientifico) {
+		this.nombreCientifico = nombreCientifico;
+	}
+
+	public String[] getAreas() {
+		return areas;
+	}
+
+	public void setAreas(String[] areas) {
+		this.areas = areas;
+	}
+
 }
