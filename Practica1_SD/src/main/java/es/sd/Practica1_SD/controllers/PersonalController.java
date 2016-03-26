@@ -22,16 +22,16 @@ public class PersonalController {
 			return "consultaPersonal";
 		}
 		
-		@RequestMapping(value="/addCorrecto1")
-		public String insertar(@RequestParam String nombre,
+		@RequestMapping(value="/addCorrectoEmpleado")
+		public String insertarEmpleado(@RequestParam String nombre,
 								@RequestParam String apellidos,
-								@RequestParam String correo,
-								@RequestParam String movil,
-								@RequestParam String fijo,
+								@RequestParam String correoElectronico,
+								@RequestParam String tMovil,
+								@RequestParam String tFijo,
 								@RequestParam String tipo,
 								Model model){
 			
-			Empleado emp = new Empleado(nombre,apellidos,correo,movil,fijo,tipo);
+			Empleado emp = new Empleado(nombre,apellidos,correoElectronico,tMovil,tFijo,tipo);
 			rep.save(emp);
 			
 			return "addCorrecto";
