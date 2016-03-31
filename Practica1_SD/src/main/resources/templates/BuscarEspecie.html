@@ -1,15 +1,31 @@
-<html>
-<head>      
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+ 
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+ 
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 </head>
 <body>
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-        <h2 class="text-center">Buscar Especie</h2>
-        <div class="row">
-        <di
-        </div>
-        </div>
-</body>    
+	<div
+		class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+		<h2 class="text-center">Buscar Especie</h2>
+		<div class="row">
+			<form>
+				<select class="dropdown"
+					placeholder="Selecciona la categoria por la que quieras buscar">
+					<option>Apellidos</option>
+					<option>Nombre y apellido</option>
+					<option>Tipo</option>
+				</select> <input class="name" placeholder="Introduzca su busqueda aquÃ­..."></input>
+				<button class="submit">BUSCAR</button>
+			</form>
+		</div>
+	</div>
+</body>
 </html>
