@@ -25,7 +25,7 @@ public class EspecieController {
 		return "consultaEspecie";
 	}
 	
-	@RequestMapping(value="/addCorrecto")
+	@RequestMapping(value="/addEspecie")
 	public String insertar(@RequestParam String nombreCientifico,
 							@RequestParam String nombreComun,
 							@RequestParam String tipo,
@@ -36,6 +36,13 @@ public class EspecieController {
 		rep.save(esp);
 		
 		return "addCorrecto";
+	}
+	
+	@RequestMapping(value="/consultasEspecie")
+	public String buscar(Model model){
+		
+		
+		return "BuscarEspecie";
 	}
 	
 }

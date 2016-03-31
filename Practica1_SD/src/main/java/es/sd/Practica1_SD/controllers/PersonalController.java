@@ -49,7 +49,7 @@ public class PersonalController {
 		}
 		
 		@RequestMapping(value="/consultasEmpleadoTipo")
-		public String consultarTodos(@ModelAttribute String busqueda,Model model){
+		public String consultarTodos(@RequestParam String busqueda,Model model){
 			System.out.println(busqueda);
 			List<Empleado> busquedaEmp = rep.findAllByTipo(busqueda);
 			model.addAttribute("listaBusquedaTipo",busquedaEmp);
