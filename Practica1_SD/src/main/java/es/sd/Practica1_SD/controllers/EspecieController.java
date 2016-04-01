@@ -1,5 +1,6 @@
 package es.sd.Practica1_SD.controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class EspecieController {
 	@Autowired
 	private EspecieRepository rep;
 	
+	
 	// CONTROLADOR PARA LA ESPECIE
 	
 	@RequestMapping(value="/consultaEspecie")
@@ -30,10 +32,15 @@ public class EspecieController {
 	public String insertar(@RequestParam String nombreCientifico,
 							@RequestParam String nombreComun,
 							@RequestParam String tipo,
-							@RequestParam Collection<Area> areas,
+							@RequestParam String[] areas,
 							Model model){
-		
-		Especie esp = new Especie(tipo,nombreComun,nombreCientifico);
+		Collection<Area> areasaux = new ArrayList<>();
+		Area newArea = new Area();
+		for(int i = 0; i<areas.length;i++){
+			newArea.setNombre(areas[i]);
+			areasaux.add(newArea);
+		}
+		Especie esp = new Especie(tipo,nombreComun,nombreCientifico,areasaux);
 		rep.save(esp);
 		
 		return "addCorrecto";

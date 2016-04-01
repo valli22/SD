@@ -20,14 +20,15 @@ public class Especie {
 	private String nombreComun;
 	private String tipo;
 	@ManyToMany
-	private Collection<Area> areas = new ArrayList<>();
+	private Collection<Area> areas;
 	
 	public Especie(){}
 	
-	public Especie(String tip, String Comun, String Cientifico){
+	public Especie(String tip, String Comun, String Cientifico, Collection<Area> areas){
 		this.tipo=tip;
 		this.nombreComun=Comun;
 		this.nombreCientifico=Cientifico;
+		this.areas = areas;
 	}
 
 	public String getTipo() {
