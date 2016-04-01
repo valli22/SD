@@ -15,11 +15,13 @@
 		<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
 			<h1 class="text-center"><a href="/">CATALOGO</a></h1>
 			<h2 class="text-center">Modificiar Empleado</h2>
-			<form th:action="@{/editarEspecie/{id}(id=${especieEditar.getId()})}" method="post">
+			<form th:action="@{/editarEmpleado/{id}(id=${empleadoEditar.getId()})}" method="post">
 				<input type="text" placeholder="Nombre" name="nombre" th:field="${empleadoEditar.nombre}"/>
 				<input type="text" placeholder="Apellidos" name="apellidos" th:field="${empleadoEditar.apellidos}"/>
 				<input type="text" placeholder="Correo electronico" name="correoElectronico" th:field="${empleadoEditar.correoElectronico}"/>
-				
+				<input type="text" placeholder="Nombre" name="nombre" th:field="${empleadoEditar.tMovil}"/>
+				<input type="text" placeholder="Nombre" name="nombre" th:field="${empleadoEditar.tFijo}"/>
+				<input type="text" placeholder="Nombre" name="nombre" th:field="${empleadoEditar.tipo}"/>
 				<input type="submit" value="Editar"/>
 			</form>
 		</div>
