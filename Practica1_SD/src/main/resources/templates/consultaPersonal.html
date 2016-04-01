@@ -1,8 +1,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
+	<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
 	<body>
-		<h1 class="text-center"><a href="/">CATALOGO</a></h1>
-		<h2>Añadir PERSONAL</h2>
-		<button><a href="/consultasPersonal">Consultar</a></button>
-		<button><a href="anadirPersonal.html">Añadir personal</a></button>
+	    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+	        <div class="row text-center">
+		    <h1 class="text-center"><a href="/">CATALOGO</a></h1>
+		    <h2>AÃ±adir Personal</h2>
+            </div>
+            <hr/>
+		    <div class="row text-center">
+                    <div class="col-md-1 col-sm-1"></div>
+		            <button class="col-md-4 col-sm-4 btn btn-default btn-lg"><a href="/consultasPersonal">Consultar</a></button>
+		            <div class="col-sm-2 col-md-2"></div>
+		            <button class="col-md-4 col-sm-4 btn btn-default btn-lg"><a href="anadirPersonal.html">AÃ±adir personal</a></button>
+                </div>
+            </div>
 	</body>
 </html>
