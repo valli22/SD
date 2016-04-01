@@ -1,19 +1,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+        href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+        rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	    th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    </head>
 	<body>
-		<h1>Main</h1>
-		<button><a href="consultaEspecie.html">Especie</a></button>
-		<button><a href="consultaPersonal.html">Personal</a></button>
-		<h1>Especies</h1>
-		<p th:each="comoquierapeter: ${comoquieras}">
-		<span th:text="'esto'+ ${comoquierapeter.nombreComun}"></span>
-		</p>
-		<h1>Empleados</h1>
-		<p th:each="empleado: ${empleados}">
-		<span th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
-		</p>
-		<h1>Areas</h1>
-		<p th:each="area: ${areas}">
-		<span th:text="'Area '+ ${area.nombre}+' '+ ${area.extension}"></span>
-		</p>
+	    <div class="container">
+	    	<!-- CABECERA -->
+           <div>
+              <h1 class="text-center">"Las agua" Parque natural</h1>
+               <ul class="nav nav-pills">
+                   <li role="presentation" class="active"><a href="/">Home</a></li>
+                   <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
+                   <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
+               </ul>
+           </div>
+            <div class="row">
+                <div clas="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+                   <div class="row">
+                       <div class="col-md-6 col-sm-6">
+                           <h2 class="text-center"><a href="consultaEspecie.html">Especies</a></h2>
+                           <a href="consultaEspecie.html">
+                           <img src="https://i.ytimg.com/vi/HMoHarq9ANE/maxresdefault.jpg" class="img-responsive img-circle"/></a>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <h2 class="text-center"><a href="consultaEspecie.html">Empleados</a></h2>
+                           <a href="consultaEspecie.html">
+                           <img src="http://www.museunacional.cat/sites/default/files/3067-041_0.jpg" class="img-responsive img-circle"/></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
 	</body>
 </html>
