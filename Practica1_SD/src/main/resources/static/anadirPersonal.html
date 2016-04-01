@@ -1,17 +1,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+        href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+        rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	    th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    </head>
 	<body>
-		<h1><a href="/">CATALOGO</a></h1>
-		<h1>Añadir PERSONAL</h1>
-		<p>Esta es la pagina para añadir PERSONAL</p>
-		<form action="/addCorrectoEmpleado" method=post>
-			<input type="text" placeholder="Nombre" name="nombre">
-			<input type="text" placeholder="Apellidos" name="apellidos">
-			<input type="text" placeholder="Correo electronico" name="correoElectronico">
-			<input type="text" placeholder="Telefono movil" name="tMovil">
-			<input type="text" placeholder="Telefono fijo" name="tFijo">
-			<input type="text" placeholder="Tipo" name="tipo">
-			
-			<input type="submit" value="Añadir">
-		</form>
+	    <div class="container">
+           <div>
+              <h1 class="text-center">Catalogo</h1>
+               <ul class="nav nav-pills">
+                   <li role="presentation" class="active"><a href="/">Home</a></li>
+                   <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
+                   <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
+               </ul>
+           </div>
+            <div class="row">
+               <br/>
+                <h3 class="text-center">Introduzca los datos para aÃ±adir un empleado</h3>
+                <form role="form" action="/addCorrectoEmpleado" method=post>
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input type="text" placeholder="Nombre" name="nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos:</label>
+                        <input type="text" placeholder="Apellidos" name="apellidos"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electronico:</label>
+                        <input type="text" placeholder="Correo electronico" name="correoElectronico"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono movil:</label>
+                        <input type="text" placeholder="Telefono movil" name="tMovil"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono fijo:</label>
+                        <input type="text" placeholder="Telefono fijo" name="tFijo"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo:</label>
+                        <select class="form-control" name="tipo">
+                            <option value="Gestion">Gestion</option>
+                            <option value="Vigilancia">Vigilancia</option>
+                            <option value="Conservacion">Conservacion</option>
+                            <option value="Investigacion">Investigacion</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">AÃ±adir</button>
+                </form>
+            </div>
+		</div>
 	</body>
 </html>

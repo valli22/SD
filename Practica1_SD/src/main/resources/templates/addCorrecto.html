@@ -1,6 +1,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+        href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+        rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	    th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    </head>
 	<body>
-		<p>Se ha añadido correctamente</p>
-		<a href="/">Volver</a>
+	    <div class="container">
+           <div>
+              <h1 class="text-center">Catalogo</h1>
+               <ul class="nav nav-pills">
+                   <li role="presentation" class="active"><a href="/">Home</a></li>
+                   <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
+                   <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
+               </ul>
+           </div>
+            <div class="row">
+               <br/>
+                <p class="text-center">Se ha aÃ±adido correctamente</p>
+                <a href="/"><button type="button" class="btn btn-info center-block">Volver</button></a>
+            </div>
+		</div>
 	</body>
 </html>

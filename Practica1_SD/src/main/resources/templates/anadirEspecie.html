@@ -1,21 +1,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<body>
-	<h1>
-		<a href="/">CATALOGO</a>
-	</h1>
-	<h1>Añadir ESPECIE</h1>
-	<p>Esta es la pagina para añadir ESPECIE</p>
-	<form action="/addEspecie" method="post">
-		<input type="text" placeholder="Nombre Comun" name="nombreComun"/>
-		<input type="text" placeholder="Nombre Cientifico" name="nombreCientifico"/> 
-		<input type="text" placeholder="Tipo" name="tipo"/>
-		<select multiple="multiple" name="areas">
-			<div th:each="area: ${areasMul}">
-				<option th:value="${area.nombre}" th:text="${area.nombre}"></option>
-			</div>
-		</select> 
-		<input type="submit" value="Añadir"/>
-		<p><a href="anadirArea.html">Añadir nueva area</a></p>
-	</form>
-</body>
+    <head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+        href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+        rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	    th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    </head>
+	<body>
+	    <div class="container">
+           <div>
+              <h1 class="text-center">Catalogo</h1>
+               <ul class="nav nav-pills">
+                   <li role="presentation" class="active"><a href="/">Home</a></li>
+                   <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
+                   <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
+               </ul>
+           </div>
+            <div class="row">
+               <br/>
+                <h3 class="text-center">Introduzca los datos para aÃ±adir una especie</h3>
+                <form role="form" action="/addEspecie" method="post">
+                    <div class="form-group">
+                        <label>Nombre comun:</label>
+                        <input type="text" placeholder="Nombre Comun" name="nombreComun" />
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre cientifico:</label>
+                        <input type="text" placeholder="Nombre Cientifico" name="nombreCientifico"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo:</label>
+                        <select class="form-control" name="tipo">
+                            <option value="Vegetal">Vegetal</option>
+                            <option value="Animal">Animal</option>
+                            <option value="Hongo">Hongo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Area:</label>
+                        <select class="form-control" multiple="multiple" name="areas">
+                            <div th:each="area: ${areasMul}">
+                                <option th:value="${area.nombre}" th:text="${area.nombre}"></option>
+                            </div>
+                        </select>
+                        <p><a href="anadirArea.html">AÃ±adir nueva area</a></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">AÃ±adir</button>
+                </form>
+            </div>
+		</div>
+	</body>
 </html>
