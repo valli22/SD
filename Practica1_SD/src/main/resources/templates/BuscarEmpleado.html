@@ -23,14 +23,15 @@
 					</div>
 					<div class="row text-center">
 						<form action="/consultasEmpleadoTipo">
-						<input type="text" name="busqueda" class="form-control" placeholder="Introduzca su busqueda"/>
-						<br/>
-						<button type="submit" class="btn btn-default"><a href="/consultasEmpleadoTipo">BUSCAR</a></button>
+							<input type="text" name="tipo" class="form-control"
+								placeholder="Introduzca su busqueda" /> <br /> <input
+								type="submit" value="Buscar"/>
 						</form>
 					</div>
 					<div class="row">
 						<p th:each="empleado: ${listaBusquedaTipo}">
-							<span th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
+							<span
+								th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
 						</p>
 					</div>
 				</div>
@@ -39,9 +40,17 @@
 						<h2>APELLIDOS</h2>
 					</div>
 					<div class="row text-center">
-						<input class="form-control" placeholder="Introduzca su busqueda"></input>
-						<br/>
-						<button type="submit" class="btn btn-default">BUSCAR</button>
+						<form action="/consultasEmpleadoApellidos">
+							<input type="text" name="apellido" class="form-control"
+								placeholder="Introduzca su busqueda" /> <br /> <input
+								type="submit" value="Buscar"/>
+						</form>
+					</div>
+					<div class="row">
+						<p th:each="empleado: ${listaBusquedaApellido}">
+							<span
+								th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
+						</p>
 					</div>
 				</div>
 				<div class="col-sm-4 col-md-4">
@@ -49,9 +58,16 @@
 						<h2>NOMBRE/APELLIDOS</h2>
 					</div>
 					<div class="row text-center">
-						<input type="text" class="form-control"
-							placeholder="Introduzca su busqueda"></input> <br/>
-						<button type="submit" class="btn btn-default">BUSCAR</button>
+						<form action="/consultasEmpleadoNombreApellido">
+							<input type="text" name="nombre" class="form-control"
+								placeholder="Introduzca el nombre de su busqueda" /> <br /> 
+							<input type="text" name="apellidos" class="form-control"
+								placeholder="Introduzca el apellido de su busqueda" /> <br />
+								<input type="submit" value="Buscar"/>
+						</form>
+					</div>
+					<div th:if="${empleado}!=null">
+						<p th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></p>
 					</div>
 				</div>
 	</div>

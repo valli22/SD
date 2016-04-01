@@ -1,6 +1,7 @@
 package es.sd.Practica1_SD.controllers;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,34 @@ public class EspecieController {
 	public String buscar(Model model){
 		
 		
-		return "BuscarEspecie";
+		return "buscarEspecie";
+	}
+	
+	@RequestMapping(value="/consultasEspecieNombreComun")
+	public String consultarNombreComun(@RequestParam (required=true) String nombreComun, Model model){
+		
+		List<Especie> busquedaEmp = rep.findAllByNombreComun(nombreComun);
+		model.addAttribute("listaBusquedaNombreComun",busquedaEmp);
+		
+		return "buscarEspecie";
+	}
+	
+	@RequestMapping(value="/consultasEspecieTipo")
+	public String consultarTipo(@RequestParam (required=true) String tipo, Model model){
+		
+		List<Especie> busquedaEmp = rep.findAllByTipo(tipo);
+		model.addAttribute("listaBusquedaTipo",busquedaEmp);
+		
+		return "buscarEspecie";
+	}
+	
+	@RequestMapping(value="/consultasEspecieTodas")
+	public String consultarTodas(Model model){
+		
+		List<Especie> busquedaEmp = rep.findAll();
+		model.addAttribute("listaBusquedaTodas",busquedaEmp);
+		
+		return "buscarEspecie";
 	}
 	
 }
