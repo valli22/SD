@@ -14,7 +14,9 @@
 	<div class="container">
 		<div
 			class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-			<h1 class="text-center"><a href="catalogo.html">CATALOGO</a></h1>
+			<h1 class="text-center">
+				<a href="/">CATALOGO</a>
+			</h1>
 			<h1 class="text-center">Buscar Empleado</h1>
 			<div class="row">
 				<div class="col-sm-4 col-md-4">
@@ -25,7 +27,7 @@
 						<form action="/consultasEmpleadoTipo">
 							<input type="text" name="tipo" class="form-control"
 								placeholder="Introduzca su busqueda" /> <br /> <input
-								type="submit" value="Buscar"/>
+								type="submit" value="Buscar" />
 						</form>
 					</div>
 					<div class="row">
@@ -43,7 +45,7 @@
 						<form action="/consultasEmpleadoApellidos">
 							<input type="text" name="apellido" class="form-control"
 								placeholder="Introduzca su busqueda" /> <br /> <input
-								type="submit" value="Buscar"/>
+								type="submit" value="Buscar" />
 						</form>
 					</div>
 					<div class="row">
@@ -60,16 +62,19 @@
 					<div class="row text-center">
 						<form action="/consultasEmpleadoNombreApellido">
 							<input type="text" name="nombre" class="form-control"
-								placeholder="Introduzca el nombre de su busqueda" /> <br /> 
-							<input type="text" name="apellidos" class="form-control"
+								placeholder="Introduzca el nombre de su busqueda" /> <br /> <input
+								type="text" name="apellidos" class="form-control"
 								placeholder="Introduzca el apellido de su busqueda" /> <br />
-								<input type="submit" value="Buscar"/>
+							<input type="submit" value="Buscar" />
 						</form>
 					</div>
 					<div th:if="${empleado}!=null">
-						<p th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></p>
+						<p
+							th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></p>
 					</div>
 				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
