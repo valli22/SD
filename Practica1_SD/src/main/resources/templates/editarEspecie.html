@@ -21,7 +21,7 @@
 				<input type="text" placeholder="Tipo" name="tipo" th:field="${especieEditar.tipo}"/>
 				<select multiple="multiple" name="areas">
 					<div th:each="area: ${areasMul}">
-						<option value="${area.nombre}" th:text="${area.nombre}" th:selected="${especieEditar.tieneAreas(area)}"></option>
+						<option th:value="${area.nombre}" th:text="${area.nombre}" th:selected="${especieEditar.tieneAreas(area)}"></option>
 					</div>
 				</select> 
 				
