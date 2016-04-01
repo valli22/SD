@@ -34,6 +34,7 @@
 						<p th:each="empleado: ${listaBusquedaTipo}">
 							<span
 								th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
+								<button><a th:href="@{/empleado/{id}(id=${empleado.getId()})}">Editar</a></button>
 						</p>
 					</div>
 				</div>
@@ -52,6 +53,7 @@
 						<p th:each="empleado: ${listaBusquedaApellido}">
 							<span
 								th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
+								<button><a th:href="@{/empleado/{id}(id=${empleado.getId()})}">Editar</a></button>
 						</p>
 					</div>
 				</div>
@@ -69,8 +71,8 @@
 						</form>
 					</div>
 					<div th:if="${empleado}!=null">
-						<p
-							th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></p>
+						<span th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
+						<button><a th:href="@{/empleado/{id}(id=${empleado.getId()})}">Editar</a></button>	
 					</div>
 				</div>
 			</div>

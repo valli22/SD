@@ -11,5 +11,9 @@
 		<p th:each="empleado: ${empleados}">
 		<span th:text="'Empleado '+ ${empleado.nombre}+' '+ ${empleado.apellidos}"></span>
 		</p>
+		<h1>Areas</h1>
+		<p th:each="area: ${areas}">
+		<span th:text="'Area '+ ${area.nombre}+' '+ ${area.extension}"></span>
+		</p>
 	</body>
 </html>

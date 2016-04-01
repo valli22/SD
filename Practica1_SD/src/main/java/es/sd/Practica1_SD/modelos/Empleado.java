@@ -41,22 +41,22 @@ public class Empleado {
 	public String getApellidos(){
 		return this.apellidos;
 	}
-	public void setCorreo(String correo){
+	public void setCorreoElectronico(String correo){
 		this.correoElectronico=correo;
 	}
-	public String getCorreo(){
+	public String getCorreoElectronico(){
 		return this.correoElectronico;
 	}
-	public void setMovil(String mov){
+	public void setTMovil(String mov){
 		this.tMovil=mov;
 	}
-	public String getMovil(){
+	public String getTMovil(){
 		return this.tMovil;
 	}
-	public void setFijo(String fijo){
+	public void setTFijo(String fijo){
 		this.tFijo=fijo;
 	}
-	public String getFijo(){
+	public String getTFijo(){
 		return this.tFijo;
 	}
 	public void setTipo(String tip){
@@ -64,5 +64,8 @@ public class Empleado {
 	}
 	public String getTipo(){
 		return this.tipo;
+	}
+	public long getId(){
+		return this.empleadoid;
 	}
 }

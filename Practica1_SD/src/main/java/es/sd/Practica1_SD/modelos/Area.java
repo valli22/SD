@@ -2,6 +2,7 @@ package es.sd.Practica1_SD.modelos;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,13 +18,15 @@ public class Area {
 	private long areaid;
 	
 	private String nombre;
+	private String extension;
 	@ManyToMany(mappedBy="areas")
-	private Collection<Especie> especies = new ArrayList<>();
+	private List<Especie> especies = new ArrayList<>();
 	
 	public Area(){}
 	
-	public Area(String nommbre){
+	public Area(String nombre, String extension){
 		this.nombre=nombre;
+		this.extension=extension;
 	}
 
 	public String getNombre() {
@@ -34,13 +37,23 @@ public class Area {
 		this.nombre = nombre;
 	}
 
-	public Collection<Especie> getEspecies() {
+	public List<Especie> getEspecies() {
 		return especies;
 	}
 
-	public void setEspecies(Collection<Especie> especies) {
+	public void setEspecies(List<Especie> especies) {
 		this.especies = especies;
 	}
 	
+	public void setExtension(String extension){
+		this.extension=extension;
+	}
 	
+	public String getExtension(){
+		return this.extension;
+	}
+	
+	public long getId(){
+		return this.areaid;
+	}
 }

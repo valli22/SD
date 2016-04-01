@@ -7,11 +7,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.sd.Practica1_SD.modelos.Area;
+import es.sd.Practica1_SD.modelos.Empleado;
 import es.sd.Practica1_SD.modelos.Especie;
+import es.sd.Practica1_SD.repository.AreaRepository;
 import es.sd.Practica1_SD.repository.EspecieRepository;
 
 @Controller
@@ -19,7 +22,8 @@ public class EspecieController {
 
 	@Autowired
 	private EspecieRepository rep;
-	
+	@Autowired
+	private AreaRepository areasRep;
 	
 	// CONTROLADOR PARA LA ESPECIE
 	
@@ -27,22 +31,21 @@ public class EspecieController {
 	public String index(Model model) {
 		return "consultaEspecie";
 	}
-	
+
 	@RequestMapping(value="/addEspecie")
 	public String insertar(@RequestParam String nombreCientifico,
 							@RequestParam String nombreComun,
 							@RequestParam String tipo,
 							@RequestParam String[] areas,
 							Model model){
-		Collection<Area> areasaux = new ArrayList<>();
+		List<Area> areasaux = new ArrayList<>();
 		Area newArea = new Area();
 		for(int i = 0; i<areas.length;i++){
-			newArea.setNombre(areas[i]);
-			areasaux.add(newArea);
+			System.out.println(areas[i]);
+			areasaux.add(areasRep.findByNombre(areas[i]));
 		}
 		Especie esp = new Especie(tipo,nombreComun,nombreCientifico,areasaux);
 		rep.save(esp);
-		
 		return "addCorrecto";
 	}
 	
@@ -80,4 +83,31 @@ public class EspecieController {
 		return "buscarEspecie";
 	}
 	
+	@RequestMapping(value="/especie/{idhtml}")
+	public String inicioEditarPersonal(@PathVariable(value = "idhtml") String idhtml,Model model){
+		Especie emp = rep.findOne(Long.parseLong(idhtml));
+		model.addAttribute("especieEditar",emp);
+		List<Area> areas = areasRep.findAll();
+		model.addAttribute("areasMul",areas);
+		return "editarEspecie";
+	}
+	
+	@RequestMapping(value="/editarEspecie/{idhtml}")
+	public String editarPersonal(@PathVariable(value = "idhtml") String idhtml,
+									@RequestParam String nombreComun,
+									@RequestParam String nombreCientifico,
+									@RequestParam String[] areas,
+									Model model){
+		
+		Especie esp = rep.findOne(Long.parseLong(idhtml));
+		esp.setNombreComun(nombreComun);
+		esp.setNombreCientifico(nombreCientifico);
+		List<Area> areasN=new ArrayList<>();
+		for(int i =0;i<areas.length;i++){
+			areasN.add(areasRep.findByNombre(areas[i]));
+		}
+		esp.setAreas(areasN);
+		rep.save(esp);
+		return "addCorrecto";
+	}
 }

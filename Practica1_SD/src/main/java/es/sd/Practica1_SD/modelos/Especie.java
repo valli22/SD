@@ -2,6 +2,7 @@ package es.sd.Practica1_SD.modelos;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,11 +21,11 @@ public class Especie {
 	private String nombreComun;
 	private String tipo;
 	@ManyToMany
-	private Collection<Area> areas;
+	private List<Area> areas;
 	
 	public Especie(){}
 	
-	public Especie(String tip, String Comun, String Cientifico, Collection<Area> areas){
+	public Especie(String tip, String Comun, String Cientifico, List<Area> areas){
 		this.tipo=tip;
 		this.nombreComun=Comun;
 		this.nombreCientifico=Cientifico;
@@ -55,12 +56,31 @@ public class Especie {
 		this.nombreCientifico = nombreCientifico;
 	}
 
-	public Collection<Area> getAreas() {
+	public List<Area> getAreas() {
 		return areas;
 	}
 
-	public void setAreas(Collection<Area> areas) {
+	public void setAreas(List<Area> areas) {
 		this.areas = areas;
 	}
 
+	public long getId(){
+		return this.especieid;
+	}
+	public boolean tieneAreas(Area area){
+		boolean encontrado =false;
+		System.out.println(this.areas.size());
+		for(Area areaA: this.areas){
+			
+			System.out.println(areaA.getNombre());
+			System.out.println(area.getNombre());
+			if(areaA.getId()==area.getId()){
+
+				encontrado=true;
+				break;
+			}
+		}
+		System.out.println(encontrado);
+		return encontrado;
+	}
 }

@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h1>
+		<a href="/">CATALOGO</a>
+	</h1>
+	<h1>Añadir ESPECIE</h1>
+	<p>Esta es la pagina para añadir ESPECIE</p>
+	<form action="/addEspecie" method="post">
+		<input type="text" placeholder="Nombre Comun" name="nombreComun"/>
+		<input type="text" placeholder="Nombre Cientifico" name="nombreCientifico"/> 
+		<input type="text" placeholder="Tipo" name="tipo"/>
+		<select multiple="multiple" name="areas">
+			<div th:each="area: ${areasMul}">
+				<option th:value="${area.nombre}" th:text="${area.nombre}"></option>
+			</div>
+		</select> 
+		<input type="submit" value="Añadir"/>
+		<p><a href="anadirArea.html">Añadir nueva area</a></p>
+	</form>
+</body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +39,6 @@ public class PersonalController {
 			
 			Empleado emp = new Empleado(nombre,apellidos,correoElectronico,tMovil,tFijo,tipo);
 			rep.save(emp);
-			
 			return "addCorrecto";
 		}
 		
@@ -73,4 +73,33 @@ public class PersonalController {
 			
 			return "buscarEmpleado";
 		}
+		
+		@RequestMapping(value="/empleado/{idhtml}")
+		public String inicioEditarPersonal(@PathVariable(value = "idhtml") String idhtml,Model model){
+			Empleado emp = rep.findOne(Long.parseLong(idhtml));
+			model.addAttribute("empleadoEditar",emp);
+			return "editarPersonal";
+		}
+		
+		@RequestMapping(value="/editarEmpleado/{idhtml}")
+		public String editarPersonal(@PathVariable(value = "idhtml") String idhtml,
+										@RequestParam String nombre,
+										@RequestParam String apellidos,
+										@RequestParam String correoElectronico,
+										@RequestParam String tMovil,
+										@RequestParam String tFijo,
+										@RequestParam String tipo,
+										Model model){
+			
+			Empleado emp = rep.findOne(Long.parseLong(idhtml));
+			emp.setNombre(nombre);
+			emp.setApellidos(apellidos);
+			emp.setCorreoElectronico(correoElectronico);
+			emp.setTFijo(tFijo);
+			emp.setTipo(tipo);
+			emp.setTMovil(tMovil);
+			rep.save(emp);
+			return "addCorrecto";
+		}
+		
 }
