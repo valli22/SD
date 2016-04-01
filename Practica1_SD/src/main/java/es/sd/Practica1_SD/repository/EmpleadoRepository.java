@@ -7,7 +7,7 @@ import es.sd.Practica1_SD.modelos.Empleado;
 
 public interface EmpleadoRepository extends JpaRepository<Empleado,Long>{
 
-	List<Empleado> findAllByNombre(String nombre);
+	List<Empleado> findAllByApellidos(String apellido);
 	Empleado findByNombreAndApellidos(String nombre, String apellidos);
 	List<Empleado> findAllByTipo(String tipo);
 	

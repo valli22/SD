@@ -44,25 +44,33 @@ public class PersonalController {
 		
 		@RequestMapping(value="/consultasPersonal")
 		public String buscar(Model model){
-			
-			return "BuscarEmpleado";
+			return "buscarEmpleado";
 		}
 		
 		@RequestMapping(value="/consultasEmpleadoTipo")
-		public String consultarTodos(@RequestParam String busqueda,Model model){
-			System.out.println(busqueda);
-			List<Empleado> busquedaEmp = rep.findAllByTipo(busqueda);
+		public String consultarTipo(@RequestParam (required=true) String tipo,Model model){
+			List<Empleado> busquedaEmp = rep.findAllByTipo(tipo);
 			model.addAttribute("listaBusquedaTipo",busquedaEmp);
 			
-			return "BuscarEmpleado";
+			return "buscarEmpleado";
 		}
 		
 		@RequestMapping(value="/consultasEmpleadoApellidos")
-		public String consultarApellidos(Model model){
+		public String consultarApellidos(@RequestParam (required=true) String apellido, Model model){
 			
-			List<Empleado> busquedaEmp = rep.findAll();
-			model.addAttribute("listaBusquedaTodos",busquedaEmp);
+			List<Empleado> busquedaEmp = rep.findAllByApellidos(apellido);
+			model.addAttribute("listaBusquedaApellido",busquedaEmp);
 			
-			return "BuscarEmpleado";
+			return "buscarEmpleado";
+		}
+		
+		@RequestMapping(value="/consultasEmpleadoNombreApellido")
+		public String consultarNombreApellidos(@RequestParam (required=true) String nombre, @RequestParam (required=true) String apellidos, Model model){
+			System.out.println(nombre);
+			System.out.println(apellidos);
+			Empleado busquedaEmp = rep.findByNombreAndApellidos(nombre, apellidos);
+			model.addAttribute("empleado",busquedaEmp);
+			
+			return "buscarEmpleado";
 		}
 }
