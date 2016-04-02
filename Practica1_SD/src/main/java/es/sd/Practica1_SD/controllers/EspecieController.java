@@ -41,7 +41,6 @@ public class EspecieController {
 		List<Area> areasaux = new ArrayList<>();
 		Area newArea = new Area();
 		for(int i = 0; i<areas.length;i++){
-			System.out.println(areas[i]);
 			areasaux.add(areasRep.findByNombre(areas[i]));
 		}
 		Especie esp = new Especie(tipo,nombreComun,nombreCientifico,areasaux);

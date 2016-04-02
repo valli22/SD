@@ -3,174 +3,180 @@
 
 <head lang="en">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-            <!-- CABECERA -->
-            <div class="row">
-                <h1 class="text-center">"Las agua" Parque natural</h1>
-                <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="/">Home</a></li>
-                    <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
-                    <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
-                </ul>
-            </div>
-            <div class="row tex-center">
-                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 hidden-sm">
-                    <img class="img-responsive" src="http://www.vinilosdecorativosweb.com/87-225-thickbox/vinilo-decorativo-conejo-saltando.jpg" />
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <h2 class="text-center page-header">BUSCAR ESPECIE</h2>
-                </div>
-                <div class="col-lg-2 col-md-2 hidden-sm">
-                    <img class="img-responsive" src="http://www.vinilosdecorativosweb.com/87-225-thickbox/vinilo-decorativo-conejo-saltando.jpg" />
-                </div>
-            </div>
+	<div class="container">
+		<div
+			class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+			<!-- CABECERA -->
+			<div class="row">
+				<h1 class="text-center">"Las agua" Parque natural</h1>
+				<ul class="nav nav-pills">
+					<li role="presentation" class="active"><a href="/">Home</a></li>
+					<li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
+					<li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
+				</ul>
+			</div>
+			<div class="row tex-center">
+				<div
+					class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 hidden-sm">
+					<img class="img-responsive"
+						src="http://www.vinilosdecorativosweb.com/87-225-thickbox/vinilo-decorativo-conejo-saltando.jpg" />
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<h2 class="text-center page-header">BUSCAR ESPECIE</h2>
+				</div>
+				<div class="col-lg-2 col-md-2 hidden-sm">
+					<img class="img-responsive"
+						src="http://www.vinilosdecorativosweb.com/87-225-thickbox/vinilo-decorativo-conejo-saltando.jpg" />
+				</div>
+			</div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                    <div class="row page-header">
-                        <h3>TODAS</h3>
-                    </div>
-                    <div class="row">
-                        <form action="/consultasEspecieTodas">
-                            <input type="submit" value="Buscar" />
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-responsive">
-                                <thead>
-                                    <th>Nombre
-                                        <br/> Comun</th>
-                                    <th>Nombre
-                                        <br /> Cientifico
-                                    </th>
-                                    <th>Tipo
-                                    </th>
-                                    <th>Areas</th>
-                                </thead>
-                                <tbody th:each="especie: ${listaBusquedaTodas}">
-                                    <tr>
-                                        <td><span th:text="${especie.nombreComun}"></span>
-                                            <button class="btn btn-default">
-                                                <a th:href="@{/especie/{id}(id=${especie.getId()})}"><span
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+					<div class="row page-header">
+						<h3>TODAS</h3>
+					</div>
+					<div class="row">
+						<form action="/consultasEspecieTodas">
+							<button class="btn btn-primary" type="submit">Buscar</button>
+						</form>
+					</div>
+					<div class="row">
+						<div class="table-responsive">
+							<table class="table table-hover table-responsive">
+								<thead>
+									<th>Nombre <br /> Comun
+									</th>
+									<th>Nombre <br /> Cientifico
+									</th>
+									<th>Tipo</th>
+									<th>Areas</th>
+								</thead>
+								<tbody th:each="especie: ${listaBusquedaTodas}">
+									<tr>
+										<td><span th:text="${especie.nombreComun}"></span>
+											<button class="btn btn-default">
+												<a th:href="@{/especie/{id}(id=${especie.getId()})}"><span
 													class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 												</a>
-                                            </button>
-                                        </td>
-                                        <td th:text="${especie.nombreCientifico}"></td>
-                                        <td th:text="${especie.tipo}"></td>
-                                        <td th:each="area: ${especie.areas}">
+											</button></td>
+										<td th:text="${especie.nombreCientifico}"></td>
+										<td th:text="${especie.tipo}"></td>
+										<td th:each="area: ${especie.areas}">
 
-                                            <p th:text="${area.nombre}+' | '+${area.extension}"></p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-5 col-lg-5 text-center">
-                    <div class="row page-header ">
-                        <h3>TIPO</h3>
-                    </div>
-                    <div class="row">
-                        <form action="/consultasEspecieTipo">
-                            <input type="text" name="tipo" class="form-control" placeholder="Introduzca su busqueda" />
-                            <br />
-                            <input type="submit" value="Buscar" />
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-responsive">
-                                <thead>
-                                    <th>Nombre
-                                        <br/> Comun</th>
-                                    <th>Nombre
-                                        <br /> Cientifico
-                                    </th>
-                                    <th>Tipo
-                                    </th>
-                                    <th>Areas</th>
-                                </thead>
-                                <tbody th:each="especie: ${listaBusquedaTipo}">
-                                    <tr>
-                                        <td><span th:text="${especie.nombreComun}"></span>
-                                            <button class="btn btn-default">
-                                                <a th:href="@{/especie/{id}(id=${especie.getId()})}"><span
+											<p th:text="${area.nombre}+' | '+${area.extension}"></p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-5 col-lg-5 text-center">
+					<div class="row page-header ">
+						<h3>TIPO</h3>
+					</div>
+					<div class="row">
+						<form action="/consultasEspecieTipo">
+							<div class="form-group">
+								<select class="form-control" name="tipo">
+									<option value="Vegetal">Vegetal</option>
+									<option value="Animal">Animal</option>
+									<option value="Hongo">Hongo</option>
+								</select>
+
+							</div>
+							<button class="btn btn-primary" type="submit">Buscar</button>
+						</form>
+					</div>
+					<div class="row">
+						<div class="table-responsive">
+							<table class="table table-hover table-responsive">
+								<thead>
+									<th>Nombre <br /> Comun
+									</th>
+									<th>Nombre <br /> Cientifico
+									</th>
+									<th>Tipo</th>
+									<th>Areas</th>
+								</thead>
+								<tbody th:each="especie: ${listaBusquedaTipo}">
+									<tr>
+										<td><span th:text="${especie.nombreComun}"></span>
+											<button class="btn btn-default">
+												<a th:href="@{/especie/{id}(id=${especie.getId()})}"><span
 													class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 												</a>
-                                            </button>
-                                        </td>
-                                        <td th:text="${especie.nombreCientifico}"></td>
-                                        <td th:text="${especie.tipo}"></td>
-                                        <td th:each="area: ${especie.areas}">
+											</button></td>
+										<td th:text="${especie.nombreCientifico}"></td>
+										<td th:text="${especie.tipo}"></td>
+										<td th:each="area: ${especie.areas}">
 
-                                            <p th:text="${area.nombre}+' | '+${area.extension}"></p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2 text-center">
-                    <div class="row page-header">
-                        <h3>NOMBRE COMUN</h3>
-                    </div>
-                    <div class="row">
-                        <form action="/consultasEspecieNombreComun">
-                            <input type="text" name="nombreComun" class="form-control" placeholder="Introduzca su busqueda" />
-                            <br />
-                            <input type="submit" value="Buscar" />
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-responsive">
-                                <thead>
-                                    <th>Nombre
-                                        <br/> Comun</th>
-                                    <th>Nombre
-                                        <br /> Cientifico
-                                    </th>
-                                    <th>Tipo
-                                    </th>
-                                    <th>Areas</th>
-                                </thead>
-                                <tbody th:each="especie: ${listaBusquedaNombreComun}">
-                                    <tr>
-                                        <td><span th:text="${especie.nombreComun}"></span>
-                                            <button class="btn btn-default">
-                                                <a th:href="@{/especie/{id}(id=${especie.getId()})}"><span
+											<p th:text="${area.nombre}+' | '+${area.extension}"></p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-sm-12 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2 text-center">
+					<div class="row page-header">
+						<h3>NOMBRE COMUN</h3>
+					</div>
+					<div class="row">
+						<form action="/consultasEspecieNombreComun">
+							<input type="text" name="nombreComun" class="form-control"
+								placeholder="Introduzca su busqueda" /> <br />
+							<button class="btn btn-primary" type="submit">Buscar</button>
+						</form>
+					</div>
+					<div class="row">
+						<div class="table-responsive">
+							<table class="table table-hover table-responsive">
+								<thead>
+									<th>Nombre <br /> Comun
+									</th>
+									<th>Nombre <br /> Cientifico
+									</th>
+									<th>Tipo</th>
+									<th>Areas</th>
+								</thead>
+								<tbody th:each="especie: ${listaBusquedaNombreComun}">
+									<tr>
+										<td><span th:text="${especie.nombreComun}"></span>
+											<button class="btn btn-default">
+												<a th:href="@{/especie/{id}(id=${especie.getId()})}"><span
 													class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 												</a>
-                                            </button>
-                                        </td>
-                                        <td th:text="${especie.nombreCientifico}"></td>
-                                        <td th:text="${especie.tipo}"></td>
-                                        <td th:each="area: ${especie.areas}">
+											</button></td>
+										<td th:text="${especie.nombreCientifico}"></td>
+										<td th:text="${especie.tipo}"></td>
+										<td th:each="area: ${especie.areas}">
 
-                                            <p th:text="${area.nombre}+' | '+${area.extension}"></p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+											<p th:text="${area.nombre}+' | '+${area.extension}"></p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

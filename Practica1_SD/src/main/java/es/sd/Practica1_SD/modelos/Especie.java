@@ -69,18 +69,16 @@ public class Especie {
 	}
 	public boolean tieneAreas(Area area){
 		boolean encontrado =false;
-		System.out.println(this.areas.size());
-		for(Area areaA: this.areas){
-			
-			System.out.println(areaA.getNombre());
-			System.out.println(area.getNombre());
+		for(Area areaA: this.areas){			
 			if(areaA.getId()==area.getId()){
-
 				encontrado=true;
 				break;
 			}
 		}
-		System.out.println(encontrado);
+		return encontrado;
+	}
+	public boolean esTipo(String tipo){	
+		boolean encontrado=  this.tipo.equals(tipo);
 		return encontrado;
 	}
 }

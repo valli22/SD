@@ -1,47 +1,58 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head lang="en">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link
-	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-	rel="stylesheet" media="screen" />
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
 
-<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 </head>
-	<body>
-         <div class="container">
-	    	<!-- CABECERA -->
-           <div>
-              <h1 class="text-center">"Las agua" Parque natural</h1>
-               <ul class="nav nav-pills">
-                   <li role="presentation" class="active"><a href="/">Home</a></li>
-                   <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
-                   <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
-               </ul>
-           </div>
+
+<body>
+    <div class="container">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
             <div class="row">
-		<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-			
-			<h2 class="text-center">Modificiar Especie</h2>
-			<br/>
-			<div class="row">
-			<form th:action="@{/editarEspecie/{id}(id=${especieEditar.getId()})}" method="post" class="col-sm-6 col-md-6">
-				<input type="text" class="form-control" placeholder="Nombre Comun" name="nombreComun" th:field="${especieEditar.nombreComun}"/><br/>
-				<input type="text" placeholder="Nombre Cientifico" class="form-control" name="nombreCientifico" th:field="${especieEditar.nombreCientifico}"/> <br/>
-				<input type="text" placeholder="Tipo"    class="form-control" name="tipo" th:field="${especieEditar.tipo}"/><br/>
-				<select class="selectpicker col-md-12 col-sm-12" multiple="multiple" name="areas">
-					<div th:each="area: ${areasMul}">
-						<option th:value="${area.nombre}" th:text="${area.nombre}" th:selected="${especieEditar.tieneAreas(area)}"></option>
-					</div>
-				</select>
-				<br/>
-				<input class="btn btn-default col-md-5 col-sm-5" type="submit" value="Editar"/>
-			</form>
-		</div>
-	    </div>
+                <h1 class="text-center">Catalogo</h1>
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="/">Home</a></li>
+                    <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
+                    <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
+                </ul>
+            </div>
+            <div class="row">
+                <br/>
+                <h3 class="text-center">Introduzca los datos que quiera modificar</h3>
+                <form role="form" action="/addEspecie" method="post">
+                    <div class="form-group">
+                        <label>Nombre comun:</label>
+                        <input type="text" placeholder="Nombre Comun" name="nombreComun" th:field="${especieEditar.nombreComun}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre cientifico:</label>
+                        <input type="text" placeholder="Nombre Cientifico" name="nombreCientifico" th:field="${especieEditar.nombreCientifico}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo:</label>
+                        <select class="form-control" name="tipo">
+                            <option th:selected="${especieEditar.esTipo('Vegetal')}" value="Vegetal">Vegetal</option>
+                            <option th:selected="${especieEditar.esTipo('Animal')}" value="Animal">Animal</option>
+                            <option th:selected="${especieEditar.esTipo('Hongo')}" value="Hongo">Hongo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Area (para seleccionar varias areas, utilizar CTRL+click izq., sin dejar de pulsar CTRL, en las areas deseadas):</label>
+                        <select class="form-control" multiple="multiple" name="areas">
+                            <div th:each="area: ${areasMul}">
+                                <option th:value="${area.nombre}" th:text="${area.nombre}" th:selected="${especieEditar.tieneAreas(area)}"></option>
+                            </div>
+                        </select>
+                        <p><a href="anadirArea.html">Añadir nueva area</a></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                </form>
+            </div>
         </div>
         </div>
 </body>
+
 </html>
