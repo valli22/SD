@@ -68,4 +68,7 @@ public class Empleado {
 	public long getId(){
 		return this.empleadoid;
 	}
+	public boolean isSelected(String input){
+		return this.tipo.equals(input);
+	}
 }
