@@ -1,60 +1,70 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head lang="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link
-        href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen" />
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-	    th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-    </head>
-	<body>
-	    <div class="container">
-           <div>
-              <h1 class="text-center">Catalogo</h1>
-               <ul class="nav nav-pills">
-                   <li role="presentation" class="active"><a href="/">Home</a></li>
-                   <li role="presentation"><a href="/consultaEspecie">Especies</a></li>
-                   <li role="presentation"><a href="/consultaPersonal">Personal</a></li>
-               </ul>
-           </div>
-            <div class="row">
-               <br/>
-                <h3 class="text-center">Modificar Empleado</h3>
-                <form role="form" th:action="@{/editarEmpleado/{id}(id=${empleadoEditar.getId()})}" method="post">
-                    <div class="form-group">
-                        <label>Nombre:</label>
-                        <input type="text" placeholder="Nombre" name="nombre" th:field="${empleadoEditar.nombre}"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Apellidos:</label>
-                        <input type="text" placeholder="Apellidos" name="apellidos" th:field="${empleadoEditar.apellidos}"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Correo electronico:</label>
-                        <input type="text" placeholder="Correo electronico" name="correoElectronico" th:field="${empleadoEditar.correoElectronico}"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Telefono movil:</label>
-                        <input type="text" placeholder="Telefono movil" name="tMovil" th:field="${empleadoEditar.tMovil}"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Telefono fijo:</label>
-                        <input type="text" placeholder="Telefono fijo" name="tFijo" th:field="${empleadoEditar.tFijo}"    />
-                    </div>
-                    <div class="form-group">
-                        <label>Tipo:</label>
-                        <select class="form-control" name="tipo">
-                            <option value="Gestion" th:selected="${empleadoEditar.isSelected('Gestion')}">Gestion</option>
-                            <option value="Vigilancia" th:selected="${empleadoEditar.isSelected('Vigilancia')}">Vigilancia</option>
-                            <option value="Conservacion" th:selected="${empleadoEditar.isSelected('Conservacion')}">Conservacion</option>
-                            <option value="Investigacion" th:selected="${empleadoEditar.isSelected('Investigacion')}">Investigacion</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Añadir</button>
-                </form>
-            </div>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div>
+			<h1 class="text-center">Catalogo</h1>
+			<ul class="nav nav-pills">
+				<li role="presentation" class="active"><a href="/">Home</a></li>
+				<li role="presentation"><a href="/consultaEspecie">Especies</a></li>
+				<li role="presentation"><a href="/consultaPersonal">Personal</a></li>
+			</ul>
 		</div>
-	</body>
+		<div class="row">
+			<br />
+			<h3 class="text-center">Modificar Empleado</h3>
+			<form role="form"
+				th:action="@{/editarEmpleado/{id}(id=${empleadoEditar.getId()})}"
+				method="post">
+				<div class="form-group">
+					<label>Nombre:</label> <input type="text" placeholder="Nombre"
+						name="nombre" th:field="${empleadoEditar.nombre}" />
+				</div>
+				<div class="form-group">
+					<label>Apellidos:</label> <input type="text"
+						placeholder="Apellidos" name="apellidos"
+						th:field="${empleadoEditar.apellidos}" />
+				</div>
+				<div class="form-group">
+					<label>Correo electronico:</label> <input type="text"
+						placeholder="Correo electronico" name="correoElectronico"
+						th:field="${empleadoEditar.correoElectronico}" />
+				</div>
+				<div class="form-group">
+					<label>Telefono movil:</label> <input type="text"
+						placeholder="Telefono movil" name="tMovil"
+						th:field="${empleadoEditar.tMovil}" />
+				</div>
+				<div class="form-group">
+					<label>Telefono fijo:</label> <input type="text"
+						placeholder="Telefono fijo" name="tFijo"
+						th:field="${empleadoEditar.tFijo}" />
+				</div>
+				<div class="form-group">
+					<label>Tipo:</label> <select class="form-control" name="tipo">
+						<option value="Gestion"
+							th:selected="${empleadoEditar.isSelected('Gestion')}">Gestion</option>
+						<option value="Vigilancia"
+							th:selected="${empleadoEditar.isSelected('Vigilancia')}">Vigilancia</option>
+						<option value="Conservacion"
+							th:selected="${empleadoEditar.isSelected('Conservacion')}">Conservacion</option>
+						<option value="Investigacion"
+							th:selected="${empleadoEditar.isSelected('Investigacion')}">Investigacion</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary">Añadir</button>
+			</form>
+		</div>
+	</div>
+</body>
 </html>

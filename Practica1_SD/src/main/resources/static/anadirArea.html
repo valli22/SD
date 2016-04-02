@@ -1,39 +1,40 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head lang="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link
-        href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen" />
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-	    th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-    </head>
-	<body>
-	    <div class="container">
-           <div>
-              <h1 class="text-center">Catalogo</h1>
-               <ul class="nav nav-pills">
-                   <li role="presentation"class="active"><a href="/">Home</a></li>
-                   <li role="presentation"><a href="/consultaEspecie">Especies</a></li>
-                   <li role="presentation"><a href="/consultaPersonal">Personal</a></li>
-               </ul>
-           </div>
-            <div class="row">
-               <br/>
-                <h3 class="text-center">Introduzca los datos para añadir un area</h3>
-                <form role="form" action="/addArea" method=post>
-                    <div class="form-group">
-                        <label>Nombre:</label>
-                        <input type="text" placeholder="Nombre" name="nombre">
-                    </div>
-                    <div class="form-group">
-                        <label>Extension:</label>
-                        <input type="text" placeholder="Extension" name="extension">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Añadir</button>
-                </form>
-            </div>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div>
+			<h1 class="text-center">Catalogo</h1>
+			<ul class="nav nav-pills">
+				<li role="presentation" class="active"><a href="/">Home</a></li>
+				<li role="presentation"><a href="/consultaEspecie">Especies</a></li>
+				<li role="presentation"><a href="/consultaPersonal">Personal</a></li>
+			</ul>
 		</div>
-	</body>
+		<div class="row">
+			<br />
+			<h3 class="text-center">Introduzca los datos para añadir un area</h3>
+			<form role="form" action="/addArea" method=post>
+				<div class="form-group">
+					<label>Nombre:</label> <input type="text" placeholder="Nombre"
+						name="nombre">
+				</div>
+				<div class="form-group">
+					<label>Extension:</label> <input type="text"
+						placeholder="Extension" name="extension">
+				</div>
+				<button type="submit" class="btn btn-primary">Añadir</button>
+			</form>
+		</div>
+	</div>
+</body>
 </html>

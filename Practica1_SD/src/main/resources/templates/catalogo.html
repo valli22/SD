@@ -1,43 +1,50 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head lang="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link
-        href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen" />
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-	    th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-    </head>
-	<body>
-	    <div class="container">
-	    	<!-- CABECERA -->
-           <div>
-              <h1 class="text-center">"Las agua" Parque natural</h1>
-               <ul class="nav nav-pills">
-                   <li role="presentation" class="active"><a href="/">Home</a></li>
-                   <li role="presentation"><a href="/consultaEspecie">Especies</a></li>
-                   <li role="presentation"><a href="/consultaPersonal">Personal</a></li>
-               </ul>
-           </div>
-            <div class="row">
-                <div clas="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-                   <div class="row">
-                       <div class="col-md-6 col-sm-6">
-                           <h2 class="text-center"><a href="consultaEspecie.html">Especies</a></h2>
-                           <a href="consultaEspecie.html">
-                           <img src="https://i.ytimg.com/vi/HMoHarq9ANE/maxresdefault.jpg" class="img-responsive img-circle"/></a>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-
-                            <h2 class="text-center"><a href="consultaPersonal.html">Empleados</a></h2>
-                           <a href="consultaPersonal.html">
-
-                           <img src="http://www.museunacional.cat/sites/default/files/3067-041_0.jpg" class="img-responsive img-circle"/></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<!-- CABECERA -->
+		<div>
+			<h1 class="text-center">"Las agua" Parque natural</h1>
+			<ul class="nav nav-pills">
+				<li role="presentation" class="active"><a href="/">Home</a></li>
+				<li role="presentation"><a href="/consultaEspecie">Especies</a></li>
+				<li role="presentation"><a href="/consultaPersonal">Personal</a></li>
+			</ul>
 		</div>
-	</body>
+		<div class="row">
+			<div
+				clas="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<h2 class="text-center">
+							<a href="consultaEspecie.html">Especies</a>
+						</h2>
+						<a href="consultaEspecie.html"> <img
+							src="https://i.ytimg.com/vi/HMoHarq9ANE/maxresdefault.jpg"
+							class="img-responsive img-circle" /></a>
+					</div>
+					<div class="col-md-6 col-sm-6">
+
+						<h2 class="text-center">
+							<a href="consultaPersonal.html">Empleados</a>
+						</h2>
+						<a href="consultaPersonal.html"> <img
+							src="http://www.museunacional.cat/sites/default/files/3067-041_0.jpg"
+							class="img-responsive img-circle" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
