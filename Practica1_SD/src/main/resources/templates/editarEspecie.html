@@ -10,24 +10,38 @@
 <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
 	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 </head>
-<body>
-	<div class="container">
+	<body>
+         <div class="container">
+	    	<!-- CABECERA -->
+           <div>
+              <h1 class="text-center">"Las agua" Parque natural</h1>
+               <ul class="nav nav-pills">
+                   <li role="presentation" class="active"><a href="/">Home</a></li>
+                   <li role="presentation"><a href="consultaEspecie.html">Especies</a></li>
+                   <li role="presentation"><a href="consultaPersonal.html">Personal</a></li>
+               </ul>
+           </div>
+            <div class="row">
 		<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-			<h1 class="text-center"><a href="/">CATALOGO</a></h1>
+			
 			<h2 class="text-center">Modificiar Especie</h2>
-			<form th:action="@{/editarEspecie/{id}(id=${especieEditar.getId()})}" method="post">
-				<input type="text" placeholder="Nombre Comun" name="nombreComun" th:field="${especieEditar.nombreComun}"/>
-				<input type="text" placeholder="Nombre Cientifico" name="nombreCientifico" th:field="${especieEditar.nombreCientifico}"/> 
-				<input type="text" placeholder="Tipo" name="tipo" th:field="${especieEditar.tipo}"/>
-				<select multiple="multiple" name="areas">
+			<br/>
+			<div class="row">
+			<form th:action="@{/editarEspecie/{id}(id=${especieEditar.getId()})}" method="post" class="col-sm-6 col-md-6">
+				<input type="text" class="form-control" placeholder="Nombre Comun" name="nombreComun" th:field="${especieEditar.nombreComun}"/><br/>
+				<input type="text" placeholder="Nombre Cientifico" class="form-control" name="nombreCientifico" th:field="${especieEditar.nombreCientifico}"/> <br/>
+				<input type="text" placeholder="Tipo"    class="form-control" name="tipo" th:field="${especieEditar.tipo}"/><br/>
+				<select class="selectpicker col-md-12 col-sm-12" multiple="multiple" name="areas">
 					<div th:each="area: ${areasMul}">
 						<option th:value="${area.nombre}" th:text="${area.nombre}" th:selected="${especieEditar.tieneAreas(area)}"></option>
 					</div>
-				</select> 
-				
-				<input type="submit" value="Editar"/>
+				</select>
+				<br/>
+				<input class="btn btn-default col-md-5 col-sm-5" type="submit" value="Editar"/>
 			</form>
 		</div>
-	</div>
+	    </div>
+        </div>
+        </div>
 </body>
 </html>
