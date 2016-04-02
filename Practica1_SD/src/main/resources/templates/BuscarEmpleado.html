@@ -39,9 +39,14 @@
                     </div>
                     <div class="row text-center">
                         <form action="/consultasEmpleadoTipo">
-                            <input type="text" name="tipo" class="form-control" placeholder="Introduzca su busqueda" />
+                            <select class="form-control" name="tipo">
+	                            <option value="Gestion">Gestion</option>
+	                            <option value="Vigilancia">Vigilancia</option>
+	                            <option value="Conservacion">Conservacion</option>
+	                            <option value="Investigacion">Investigacion</option>
+	                        </select>
                             <br />
-                            <input type="submit" value="Buscar" />
+                            <button type="submit" class="btn btn-primary">Buscar</button>
                         </form>
                     </div>
                     <div class="row">
