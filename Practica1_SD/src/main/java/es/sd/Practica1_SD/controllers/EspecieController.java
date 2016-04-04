@@ -95,12 +95,14 @@ public class EspecieController {
 	public String editarPersonal(@PathVariable(value = "idhtml") String idhtml,
 									@RequestParam String nombreComun,
 									@RequestParam String nombreCientifico,
+									@RequestParam String tipo,
 									@RequestParam String[] areas,
 									Model model){
 		
 		Especie esp = rep.findOne(Long.parseLong(idhtml));
 		esp.setNombreComun(nombreComun);
 		esp.setNombreCientifico(nombreCientifico);
+		esp.setTipo(tipo);
 		List<Area> areasN=new ArrayList<>();
 		for(int i =0;i<areas.length;i++){
 			areasN.add(areasRep.findByNombre(areas[i]));
