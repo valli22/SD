@@ -44,7 +44,8 @@ $(document).ready(function () {
             argMinWidth = 0;
         }
         if ($('#widthMax').val() !== undefined && $('#widthMax').val() !== '') {
-            argMaxWidth = $('#widthMax').val();
+            aux = ($('#widthMax').val());
+            argMaxWidht = aux;
         }else{
             argMaxWidht = 5000;
         }
