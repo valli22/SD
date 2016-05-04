@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //Una vez el documento este cargado inicializamos datos a deafult
     var date = '';
     var contentType = 7;
     var argDescription = '';
@@ -9,6 +10,8 @@ $(document).ready(function () {
     var argMaxWidht = 5000
     var argMaxHeight = 5000
     var argViews = 0
+    // Si haces click en el boton de buscar se borran todas las fotos que estuviesen antes y se realiza la nueva busqueda
+    // en caso de algun parametro este vacio, se utiliza los que estaban puesto por defecto
     $('#buscar').click(function () {
         $('.borrar').remove()
         date = $('#dateMin').val().split('T')
@@ -75,7 +78,7 @@ $(document).ready(function () {
             argDescription='';
         }
 
-
+        //Realizamos la peticion ajax con la url correspondiente y mostramos las fotos
         var url = 'https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=' + api_key + '&extras=url_s,tags,views,description,date_taken&user_id=' + user_id + '&format=json&nojsoncallback=1' + argContentType + argMinTakenDate;
         console.log(url);
         $.ajax({
@@ -93,11 +96,11 @@ $(document).ready(function () {
                 var withViews = foto.views >= argViews
                 if (withDescription && withSize && withTag && withViews) {
                     
-                    $('#lista').append('<div class="borrar"><img value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg" data-type="zoomin" class="img"/><div id="' + i + '" class="overlay-container"><div class="window-container zoomin"><span class="glyphicon glyphicon-remove close" aria-hidden="true"></span><img id="fotito" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg" class="img "></div></div>')
+                    $('#lista').append('<div class="borrar"><img value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg" data-type="zoomin" class="img"/><div id="' + i + '" class="overlay-container"><div class="window-container zoomin"><span class="glyphicon glyphicon-remove close" aria-hidden="true"></span><img id="fotito" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpeg" class="img "></div></div>')
                 }
                 i++;
             })
-            
+            //Cada vez que se haga click en una imagen esta se mostrara en un dialogo mas grande
             $('.img').click(function (event) {
                 let valor = $(this).attr('value');
                 type = $(this).attr('data-type');
