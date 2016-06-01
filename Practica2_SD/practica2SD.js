@@ -126,7 +126,7 @@ $(document).ready(function () {
 
     var content_type = '';
     var minTakenDate = '';
-    var tags = '';
+    var tags = [];
     var text = '';
     var geo = '';
     var minUploadDate = '';
@@ -167,6 +167,11 @@ $(document).ready(function () {
         $('#fechaUnix').text($(this).datepicker('getDate').getTime() / 1000 + ' segundos desde el 1 de enero de 1970');
     }
 
+    $('#buttonTags').click(function () {
+        tags.push($('#tags').val());
+        $("#tagList").append('<li><span>'+$('#tags').val()+'</span><button id="eliminar'+$('#tags').val()+'">Eliminar</button></li>');
+    })
+    
 
     //QUITAR LOS EXTRAS CUANDO ESTE TERMINADO
     
@@ -180,7 +185,7 @@ $(document).ready(function () {
         aux = minUploadDate.split('/');
         minUploadDate =encodeURI(aux[2]+'-'+aux[1]+'-'+aux[0]);
         
-        tags = encodeURI($('#tags').val());
+        //tags = encodeURI($('#tags').val());
         
         text = encodeURI($('#texto').val());
         
@@ -214,11 +219,21 @@ $(document).ready(function () {
             }
         }
         
+        /*
         console.log(content_type);
         console.log('Tomada'+minTakenDate);
         console.log('Subida'+minUploadDate);
+        */
         
-        var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&extras=date_taken,date_upload' + '&min_taken_date=' + minTakenDate + '&tags='+tags + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate;
+        tagResult ='';
+        
+        for(var tag of tags){
+            tagResult+=tag+'-';
+        }
+        
+        console.log(tagResult);
+        
+        var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&extras=date_taken,date_upload' + '&min_taken_date=' + minTakenDate + '&tags='+tagResult + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate;
         console.log(url);
         $.ajax({
             url: url
