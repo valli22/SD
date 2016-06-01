@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //Una vez el documento este cargado inicializamos datos a deafult
-    var date = '';
+    /*var date = '';
     var contentType = 7;
     var argDescription = '';
     var argContentType = '&content_type=' + contentType;
@@ -122,7 +122,110 @@ $(document).ready(function () {
 
         })
     })
+*/
+
+    var content_type = '';
+    var minTakenDate = '';
+    var tags = '';
+    var text = '';
+    var geo = '';
+    var minUploadDate = '';
+    
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+
+    $.datepicker.setDefaults($.datepicker.regional["es"]);
+    $("#locale").change(function () {
+        $("#dateMin").datepicker("option",
+            $.datepicker.regional[$(this).val()]);
+    });
+
+    $("#dateMin").datepicker();
+    
+    $("#dateMin").change(mostrarFecha);
+    $("#dateUploadMin").datepicker();
+    
+    $("#dateUploadMin").change(mostrarFecha);
+
+    function mostrarFecha() {
+        $('#copiaFecha').text($(this).datepicker('getDate'));
+        $('#fechaUnix').text($(this).datepicker('getDate').getTime() / 1000 + ' segundos desde el 1 de enero de 1970');
+    }
 
 
+    //QUITAR LOS EXTRAS CUANDO ESTE TERMINADO
+    
+    $('#buscar').click(function () {
+        
+        minTakenDate = $('#dateMin').val();
+        aux = minTakenDate.split('/');
+        minTakenDate =encodeURI(aux[2]+'-'+aux[1]+'-'+aux[0]);
+        
+        minUploadDate = $('#dateUploadMin').val();
+        aux = minUploadDate.split('/');
+        minUploadDate =encodeURI(aux[2]+'-'+aux[1]+'-'+aux[0]);
+        
+        tags = encodeURI($('#tags').val());
+        
+        text = encodeURI($('#texto').val());
+        
+        if($('#fotos').is(':checked')){
+            if($('#captura').is(':checked')){
+                if($('#otros').is(':checked')){
+                    content_type='7';
+                }else{
+                    content_type='4';
+                }
+            }else{
+                if($('#otros').is(':checked')){
+                    content_type='6';
+                }else{
+                    content_type='1';
+                }
+            }
+        }else{
+            if($('#captura').is(':checked')){
+                if($('#otros').is(':checked')){
+                    content_type='5';
+                }else{
+                    content_type='2';
+                }
+            }else{
+                if($('#otros').is(':checked')){
+                    content_type='3';
+                }else{
+                    content_type='7';
+                }
+            }
+        }
+        
+        console.log(content_type);
+        console.log('Tomada'+minTakenDate);
+        console.log('Subida'+minUploadDate);
+        
+        var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&extras=date_taken,date_upload' + '&min_taken_date=' + minTakenDate + '&tags='+tags + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate;
+        console.log(url);
+        $.ajax({
+            url: url
+        }).done(function (data) {
+            console.log(data);
+        })
+
+    })
 
 })
