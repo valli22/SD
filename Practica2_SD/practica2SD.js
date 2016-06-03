@@ -130,7 +130,7 @@ $(document).ready(function () {
     var text = '';
     var geo = '';
     var minUploadDate = '';
-    
+
     $.datepicker.regional['es'] = {
         closeText: 'Cerrar',
         prevText: '<Ant',
@@ -156,10 +156,10 @@ $(document).ready(function () {
     });
 
     $("#dateMin").datepicker();
-    
+
     $("#dateMin").change(mostrarFecha);
     $("#dateUploadMin").datepicker();
-    
+
     $("#dateUploadMin").change(mostrarFecha);
 
     function mostrarFecha() {
@@ -169,78 +169,131 @@ $(document).ready(function () {
 
     $('#buttonTags').click(function () {
         tags.push($('#tags').val());
-        $("#tagList").append('<li><span>'+$('#tags').val()+'</span><button id="eliminar'+$('#tags').val()+'">Eliminar</button></li>');
+        $("#tagList").append('<li><span>' + $('#tags').val() + '</span><button class="eliminar" id="eliminar_' + $('#tags').val() + '" type="button">Eliminar</button></li>');
     })
-    
+
+    $('ul').click('li button .eliminar', function (event) {
+        aux = $(event.target).attr('id').split('_');
+        var tagActual = aux[1];
+        var i = 0;
+        for (var tag of tags) {
+            if (tag === tagActual) {
+                tags.splice(i, 1);
+                break;
+            }
+            i++;
+        }
+        $(event.target.parentElement).remove();
+    })
 
     //QUITAR LOS EXTRAS CUANDO ESTE TERMINADO
-    
+
     $('#buscar').click(function () {
-        
+        var lat = '';
+        var long = '';
+        if ($('#address').val() != '') {
+            geo = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI($('#address').val()) + '&key=AIzaSyAeLSgaTCd_BcxqvmMovUcRHUIgXtu4Za4'
+            $.ajax({
+                url: geo
+            }).done(function (data) {
+                lat = data.results[0].geometry.location.lat;
+                long = data.results[0].geometry.location.lng;
+            })
+        }
+
         minTakenDate = $('#dateMin').val();
         aux = minTakenDate.split('/');
-        minTakenDate =encodeURI(aux[2]+'-'+aux[1]+'-'+aux[0]);
-        
+        minTakenDate = encodeURI(aux[2] + '-' + aux[1] + '-' + aux[0]);
+
         minUploadDate = $('#dateUploadMin').val();
         aux = minUploadDate.split('/');
-        minUploadDate =encodeURI(aux[2]+'-'+aux[1]+'-'+aux[0]);
-        
+        minUploadDate = encodeURI(aux[2] + '-' + aux[1] + '-' + aux[0]);
+
         //tags = encodeURI($('#tags').val());
-        
+
         text = encodeURI($('#texto').val());
-        
-        if($('#fotos').is(':checked')){
-            if($('#captura').is(':checked')){
-                if($('#otros').is(':checked')){
-                    content_type='7';
-                }else{
-                    content_type='4';
+
+        if ($('#fotos').is(':checked')) {
+            if ($('#captura').is(':checked')) {
+                if ($('#otros').is(':checked')) {
+                    content_type = '7';
+                } else {
+                    content_type = '4';
                 }
-            }else{
-                if($('#otros').is(':checked')){
-                    content_type='6';
-                }else{
-                    content_type='1';
+            } else {
+                if ($('#otros').is(':checked')) {
+                    content_type = '6';
+                } else {
+                    content_type = '1';
                 }
             }
-        }else{
-            if($('#captura').is(':checked')){
-                if($('#otros').is(':checked')){
-                    content_type='5';
-                }else{
-                    content_type='2';
+        } else {
+            if ($('#captura').is(':checked')) {
+                if ($('#otros').is(':checked')) {
+                    content_type = '5';
+                } else {
+                    content_type = '2';
                 }
-            }else{
-                if($('#otros').is(':checked')){
-                    content_type='3';
-                }else{
-                    content_type='7';
+            } else {
+                if ($('#otros').is(':checked')) {
+                    content_type = '3';
+                } else {
+                    content_type = '7';
                 }
             }
         }
-        
+
         /*
         console.log(content_type);
         console.log('Tomada'+minTakenDate);
         console.log('Subida'+minUploadDate);
         */
-        
-        tagResult ='';
-        
-        for(var tag of tags){
-            tagResult+=tag+'-';
-        }
-        
-        console.log(tagResult);
-        
-        var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&extras=date_taken,date_upload' + '&min_taken_date=' + minTakenDate + '&tags='+tagResult + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate;
-        console.log(url);
-        $.ajax({
-            url: url
-        }).done(function (data) {
-            console.log(data);
-        })
 
+        tagResult = '';
+        var j = 0;
+        for (var tag of tags) {
+            if (j == 0) {
+                tagResult += tag;
+                j++;
+            } else {
+                tagResult += ',' + tag;
+            }
+        }
+
+        console.log(tagResult);
+
+        var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&min_taken_date=' + minTakenDate + '&tags=' + tagResult + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate;
+
+        if ($('#address').val() !== '') {
+            geo = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI($('#address').val()) + '&key=AIzaSyAeLSgaTCd_BcxqvmMovUcRHUIgXtu4Za4'
+            $.ajax({
+                url: geo
+            }).done(function (data) {
+                if (data.status === 'OK') {
+                    lat = data.results[0].geometry.location.lat;
+                    long = data.results[0].geometry.location.lng;
+                    console.log(lat);
+                    console.log(long);
+                    url += '&accuracy=11&lat=' + lat + '&lon=' + long;
+                    console.log(url);
+                    $.ajax({
+                        url: url
+                    }).done(function (data) {
+                        console.log(data);
+                    })
+                }else{
+                    alert('La direccion introducida no es valida.')
+                }
+            })
+        } else {
+
+            console.log(url);
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                console.log(data);
+            })
+        }
     })
 
 })
