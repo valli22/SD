@@ -47,6 +47,7 @@ $(document).ready(function () {
     $('#buttonTags').click(function () {
         tags.push($('#tags').val());
         $("#tagList").append('<li class="list-group-item"><div class="row"><div class="col-lg-6 col-md-6 col-sm-6"><h4>' + $('#tags').val() + '</h4></div><div class="col-lg-6 col-md-6 col-sm-6"><button class="eliminar btn btn-default" id="eliminar_' + $('#tags').val() + '" type="button">Eliminar</button></div></div></li>');
+        $('#tags').val('');
     });
 
     $('.list-group').click('li button .eliminar', function (event) {
@@ -121,12 +122,6 @@ $(document).ready(function () {
             }
         }
 
-        /*
-        console.log(content_type);
-        console.log('Tomada'+minTakenDate);
-        console.log('Subida'+minUploadDate);
-        */
-
         tagResult = '';
         var j = 0;
         for (var tag of tags) {
@@ -170,6 +165,20 @@ $(document).ready(function () {
                 mostrarImagenes(data.photos.photo);
             })
         }
+        
+        //Dejar los parametros vacios
+        
+        $('#texto').val('');
+        $('#dateMin').val('');
+        $('#dateUploadMin').val('');
+        $('#address').val('');
+        $('#fotos').prop('checked','');
+        $('#captura').prop('checked','');
+        $('#otros').prop('checked','');
+        $('#tags').val('');
+        tagResult = '';
+        tags = [];
+        $('.list-group-item').remove();
     })
 
     function mostrarImagenes(fotos) {
