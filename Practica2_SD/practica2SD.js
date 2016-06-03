@@ -1,128 +1,4 @@
 $(document).ready(function () {
-    //Una vez el documento este cargado inicializamos datos a deafult
-    /*var date = '';
-    var contentType = 7;
-    var argDescription = '';
-    var argContentType = '&content_type=' + contentType;
-    var argTag = '';
-    var argMinWidth = 0
-    var argMinHeight = 0
-    var argMaxWidht = 5000
-    var argMaxHeight = 5000
-    var argViews = 0
-    // Si haces click en el boton de buscar se borran todas las fotos que estuviesen antes y se realiza la nueva busqueda
-    // en caso de algun parametro este vacio, se utiliza los que estaban puesto por defecto
-    $('#buscar').click(function () {
-        $('.borrar').remove()
-        date = $('#dateMin').val().split('T')
-        var argMinTakenDate = '&min_taken_date=' + date[0]+' '+date[1]+':00';
-        switch ($('#tipo').val()) {
-        case 'Fotos':
-            argContentType = '&content_type=' + 1;
-            break;
-        case 'Captura de pantalla':
-            argContentType = '&content_type=' + 2;
-            break;
-        case 'Otras':
-            argContentType = '&content_type=' + 3;
-            break;
-        case 'Foto y capturas':
-            argContentType = '&content_type=' + 4;
-            break;
-        case 'Fotos y otras':
-            argContentType = '&content_type=' + 6;
-            break;
-        case 'Capturas y otras':
-            argContentType = '&content_type=' + 5;
-            break;
-        case 'Todo':
-            argContentType = '&content_type=' + 7;
-            break;
-        }
-
-
-        if ($('#widthMin').val() !== undefined && $('#widthMin').val() !== '') {
-            argMinWidth = $('#widthMin').val();
-        }else{
-            argMinWidth = 0;
-        }
-        if ($('#widthMax').val() !== undefined && $('#widthMax').val() !== '') {
-            aux = ($('#widthMax').val());
-            argMaxWidht = aux;
-        }else{
-            argMaxWidht = 5000;
-        }
-        if ($('#heightMin').val() !== undefined && $('#heightMin').val() !== '') {
-            argMinHeight = $('#heightMin').val();
-        }else{
-            argMinHeight = 0;
-        }
-        if ($('#heightMax').val() !== undefined && $('#heightMax').val() !== '') {
-            argMaxHeight = $('#heightMax').val();
-        }else{
-            argMaxHeight = 5000
-        }
-        if ($('#views').val() !== undefined && $('#views').val() !== '') {
-            argViews = $('#views').val();
-        }else{
-            argViews = 0
-        }
-        if ($('#tags').val() !== undefined && $('#tags').val() !== '') {
-            argTag = $('#tags').val();
-        }else{
-            argTag = '';
-        }
-        if ($('#descripcion').val() !== undefined && $('#descripcion').val() !== '') {
-            argDescription = $('#descripcion').val();
-        }else{
-            argDescription='';
-        }
-
-        //Realizamos la peticion ajax con la url correspondiente y mostramos las fotos
-        var url = 'https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=' + api_key + '&extras=url_s,tags,views,description,date_taken&user_id=' + user_id + '&format=json&nojsoncallback=1' + argContentType + argMinTakenDate;
-        console.log(url);
-        $.ajax({
-            url: url
-        }).done(function (data) {
-            var i = 0;
-            console.log(data)
-            data.photos.photo.forEach(function (foto) {
-
-                var width = foto.width_s
-                var height = foto.height_s
-                var withTag = foto.tags.indexOf(argTag) > -1
-                var withSize = width <= argMaxWidht && width >= argMinWidth && height <= argMaxHeight && height >= argMinHeight
-                var withDescription = foto.description._content.indexOf(argDescription) > -1
-                var withViews = foto.views >= argViews
-                if (withDescription && withSize && withTag && withViews) {
-                    
-                    $('#lista').append('<div class="borrar"><img value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg" data-type="zoomin" class="img"/><div id="' + i + '" class="overlay-container"><div class="window-container zoomin"><span class="glyphicon glyphicon-remove close" aria-hidden="true"></span><img id="fotito" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpeg" class="img "></div></div>')
-                }
-                i++;
-            })
-            //Cada vez que se haga click en una imagen esta se mostrara en un dialogo mas grande
-            $('.img').click(function (event) {
-                let valor = $(this).attr('value');
-                type = $(this).attr('data-type');
-                let selector = '#' + valor;
-                $(selector).fadeIn(function () {
-
-                    window.setTimeout(function () {
-                        $('.window-container.' + type).addClass('window-container-visible');
-
-                    }, 100);
-
-                });
-            });
-
-            $('.close').click(function () {
-                console.log('entra')
-                $('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
-            });
-
-        })
-    })
-*/
 
     var content_type = '';
     var minTakenDate = '';
@@ -158,6 +34,7 @@ $(document).ready(function () {
     $("#dateMin").datepicker();
 
     $("#dateMin").change(mostrarFecha);
+    
     $("#dateUploadMin").datepicker();
 
     $("#dateUploadMin").change(mostrarFecha);
@@ -169,10 +46,10 @@ $(document).ready(function () {
 
     $('#buttonTags').click(function () {
         tags.push($('#tags').val());
-        $("#tagList").append('<li><span>' + $('#tags').val() + '</span><button class="eliminar" id="eliminar_' + $('#tags').val() + '" type="button">Eliminar</button></li>');
-    })
+        $("#tagList").append('<li class="list-group-item"><div class="row"><div class="col-lg-6 col-md-6 col-sm-6"><h4>' + $('#tags').val() + '</h4></div><div class="col-lg-6 col-md-6 col-sm-6"><button class="eliminar btn btn-default" id="eliminar_' + $('#tags').val() + '" type="button">Eliminar</button></div></div></li>');
+    });
 
-    $('ul').click('li button .eliminar', function (event) {
+    $('.list-group').click('li button .eliminar', function (event) {
         aux = $(event.target).attr('id').split('_');
         var tagActual = aux[1];
         var i = 0;
@@ -183,14 +60,16 @@ $(document).ready(function () {
             }
             i++;
         }
-        $(event.target.parentElement).remove();
-    })
-
-    //QUITAR LOS EXTRAS CUANDO ESTE TERMINADO
+        $(event.target.parentElement.parentElement.parentElement).remove();
+    });
+    
 
     $('#buscar').click(function () {
         var lat = '';
         var long = '';
+
+        $('.borrar').remove();
+
         if ($('#address').val() != '') {
             geo = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI($('#address').val()) + '&key=AIzaSyAeLSgaTCd_BcxqvmMovUcRHUIgXtu4Za4'
             $.ajax({
@@ -209,7 +88,6 @@ $(document).ready(function () {
         aux = minUploadDate.split('/');
         minUploadDate = encodeURI(aux[2] + '-' + aux[1] + '-' + aux[0]);
 
-        //tags = encodeURI($('#tags').val());
 
         text = encodeURI($('#texto').val());
 
@@ -260,9 +138,7 @@ $(document).ready(function () {
             }
         }
 
-        console.log(tagResult);
-
-        var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&min_taken_date=' + minTakenDate + '&tags=' + tagResult + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate;
+        var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&min_taken_date=' + minTakenDate + '&tags=' + tagResult + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate + '&format=json&nojsoncallback=1';
 
         if ($('#address').val() !== '') {
             geo = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI($('#address').val()) + '&key=AIzaSyAeLSgaTCd_BcxqvmMovUcRHUIgXtu4Za4'
@@ -279,9 +155,9 @@ $(document).ready(function () {
                     $.ajax({
                         url: url
                     }).done(function (data) {
-                        console.log(data);
+                        mostrarImagenes(data.photos.photo);
                     })
-                }else{
+                } else {
                     alert('La direccion introducida no es valida.')
                 }
             })
@@ -291,9 +167,28 @@ $(document).ready(function () {
             $.ajax({
                 url: url
             }).done(function (data) {
-                console.log(data);
+                mostrarImagenes(data.photos.photo);
             })
         }
     })
+
+    function mostrarImagenes(fotos) {
+        var i = 0;
+        var imagenes = '';
+        for (var foto of fotos) {
+            var modal = '<div class="modal fade" id="'+i+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"> <div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">'+foto.title+'</h4></div> <div class="modal-body"> <img class="img" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/> </div>  <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+            if (0 == i % 2) {
+                if (i == fotos.length-1) {
+                    $('#lista').append('<div class="row text-center"><div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#'+i+'"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>'+modal+'</div></div>');
+                }else{
+                    imagenes+='<div class="row text-center"><div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#'+i+'"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>'+modal+'</div>';
+                }
+            }else{
+                $('#lista').append(imagenes + '<div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#'+i+'"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>'+modal+'</div></div>');
+                imagenes='';
+            }
+            i++;
+        }
+    }
 
 })

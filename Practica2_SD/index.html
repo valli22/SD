@@ -12,38 +12,45 @@
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="practica2SD.js"></script>
+    <link rel="stylesheet" type="text/css" href="practica2.css" />
 
 
 
 </head>
 
 <body>
-    <h1>Flickr</h1>
     <div class="container">
+        <h1 class="text-center">Flickr</h1>
         <form class="navbar-form" role="search">
             <div class="form-group text-center">
                 <!-- inputs para la busqueda -->
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 x">
                         <h3>Texto contenido en el titulo, descripcion o tags:</h3>
                         <input id="texto" type="text" class="form-control" placeholder="Descripcion a buscar">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <h3>Tag</h3>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input id="tags" type="text" class="form-control" placeholder="Tags a buscar">
+                        <div class="row">
+                            <h3>Tag</h3>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <input id="tags" type="text" class="form-control" placeholder="Tags a buscar">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <button id="buttonTags" type="button" class="btn btn-default">Añadir</button>
+                            </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <button id="buttonTags" type="button" class="btn btn-default">Añadir</button>
+                        <br>
+                        <div class="row">
+                            <ul class="list-group" id="tagList"></ul>
                         </div>
-                        <ul id="tagList"></ul>
+
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                         <h3>Fecha minima de subida</h3>
                         <input id="dateUploadMin" type="text" class="form-control">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row ">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <h3>Fecha minima de captura</h3>
                         <input id="dateMin" type="text" class="form-control">
@@ -63,8 +70,10 @@
                 </div>
             </div>
             <br>
-
-            <button id="buscar" type="button" class="btn btn-default">Buscar</button>
+            <br>
+            <div class="row text-center">
+                <button id="buscar" type="button" class="btn btn-default">Buscar</button>
+            </div>
         </form>
         <hr>
         <!-- div donde se añadiran las imagenes -->
