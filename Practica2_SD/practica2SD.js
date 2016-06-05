@@ -34,7 +34,7 @@ $(document).ready(function () {
     $("#dateMin").datepicker();
 
     $("#dateMin").change(mostrarFecha);
-    
+
     $("#dateUploadMin").datepicker();
 
     $("#dateUploadMin").change(mostrarFecha);
@@ -45,9 +45,12 @@ $(document).ready(function () {
     }
 
     $('#buttonTags').click(function () {
-        tags.push($('#tags').val());
-        $("#tagList").append('<li class="list-group-item"><div class="row"><div class="col-lg-6 col-md-6 col-sm-6"><h4>' + $('#tags').val() + '</h4></div><div class="col-lg-6 col-md-6 col-sm-6"><button class="eliminar btn btn-default" id="eliminar_' + $('#tags').val() + '" type="button">Eliminar</button></div></div></li>');
-        $('#tags').val('');
+        if ($('#tags').val() != '') {
+            tags.push($('#tags').val());
+            $("#tagList").append('<li class="list-group-item"><div class="row"><div class="col-lg-6 col-md-6 col-sm-6"><h4>' + $('#tags').val().toUpperCase() + '</h4></div><div class="col-lg-6 col-md-6 col-sm-6"><button class="eliminar btn btn-primary" id="eliminar_' + $('#tags').val() + '" type="button">Eliminar</button></div></div></li>');
+            $('#tags').val('');
+        }
+
     });
 
     $('.list-group').click('li button .eliminar', function (event) {
@@ -63,7 +66,7 @@ $(document).ready(function () {
         }
         $(event.target.parentElement.parentElement.parentElement).remove();
     });
-    
+
 
     $('#buscar').click(function () {
         var lat = '';
@@ -165,16 +168,16 @@ $(document).ready(function () {
                 mostrarImagenes(data.photos.photo);
             })
         }
-        
+
         //Dejar los parametros vacios
-        
+
         $('#texto').val('');
         $('#dateMin').val('');
         $('#dateUploadMin').val('');
         $('#address').val('');
-        $('#fotos').prop('checked','');
-        $('#captura').prop('checked','');
-        $('#otros').prop('checked','');
+        $('#fotos').prop('checked', '');
+        $('#captura').prop('checked', '');
+        $('#otros').prop('checked', '');
         $('#tags').val('');
         tagResult = '';
         tags = [];
@@ -185,16 +188,16 @@ $(document).ready(function () {
         var i = 0;
         var imagenes = '';
         for (var foto of fotos) {
-            var modal = '<div class="modal fade" id="'+i+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"> <div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">'+foto.title+'</h4></div> <div class="modal-body"> <img class="img" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/> </div>  <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+            var modal = '<div class="modal fade" id="' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"> <div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">' + foto.title + '</h4></div> <div class="modal-body"> <img class="img" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/> </div>  <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
             if (0 == i % 2) {
-                if (i == fotos.length-1) {
-                    $('#lista').append('<div class="row text-center"><div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#'+i+'"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>'+modal+'</div></div>');
-                }else{
-                    imagenes+='<div class="row text-center"><div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#'+i+'"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>'+modal+'</div>';
+                if (i == fotos.length - 1) {
+                    $('#lista').append('<div class="row text-center"><div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#' + i + '"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>' + modal + '</div></div>');
+                } else {
+                    imagenes += '<div class="row text-center"><div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#' + i + '"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>' + modal + '</div>';
                 }
-            }else{
-                $('#lista').append(imagenes + '<div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#'+i+'"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>'+modal+'</div></div>');
-                imagenes='';
+            } else {
+                $('#lista').append(imagenes + '<div class="borrar col-lg-6 col-md-6 col-sm-12 col-xs-12"><a href="#" class="thumbnail" data-toggle="modal" data-target="#' + i + '"><img class="img img-responsive" value="' + i + '" src="https://farm' + foto.farm + '.staticflickr.com/' + foto.server + '/' + foto.id + '_' + foto.secret + '.jpg"/></a>' + modal + '</div></div>');
+                imagenes = '';
             }
             i++;
         }

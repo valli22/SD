@@ -20,23 +20,25 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center">Flickr</h1>
+        <div class="row" id="cabecera">    
+            <img id="icono" class="img img-responsive" src="http://www.hdicon.com/wp-content/uploads/2010/06/flickr_2004.png">
+        </div>
         <form class="navbar-form" role="search">
-            <div class="form-group text-center">
+            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
                 <!-- inputs para la busqueda -->
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 x">
-                        <h3>Texto contenido en el titulo, descripcion o tags:</h3>
-                        <input id="texto" type="text" class="form-control" placeholder="Descripcion a buscar">
+                        <h3>Texto:</h3>
+                        <input id="texto" type="text" class="form-control" placeholder="Texto...">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="row">
-                            <h3>Tag</h3>
+                            <h3>Tags:</h3>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <input id="tags" type="text" class="form-control" placeholder="Tags a buscar">
+                                <input id="tags" type="text" class="form-control" placeholder="Tag...">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <button id="buttonTags" type="button" class="btn btn-default">Añadir</button>
+                                <button id="buttonTags" type="button" class="btn btn-primary">Añadir</button>
                             </div>
                         </div>
                         <br>
@@ -46,21 +48,21 @@
 
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-                        <h3>Fecha minima de subida</h3>
-                        <input id="dateUploadMin" type="text" class="form-control">
+                        <h3>Fecha minima de subida:</h3>
+                        <input id="dateUploadMin" type="text" class="form-control" placeholder="DD/MM/AAAA">
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <h3>Fecha minima de captura</h3>
-                        <input id="dateMin" type="text" class="form-control">
+                        <h3>Fecha minima de captura:</h3>
+                        <input id="dateMin" type="text" class="form-control" placeholder="DD/MM/AAAA">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <h3>Direccion</h3>
-                        <input id="address" type="text" class="form-control">
+                        <h3>Dirección:</h3>
+                        <input id="address" type="text" class="form-control" placeholder="Direccion...">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <h3>Tipo de contenido</h3>
+                        <h3>Tipo de contenido:</h3>
 
                         <input id='fotos' type="checkbox">Fotos
                         <input id='captura' type="checkbox">Captura de pantalla
@@ -69,10 +71,8 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
             <div class="row text-center">
-                <button id="buscar" type="button" class="btn btn-default">Buscar</button>
+                <button id="buscar" type="button" class="btn btn-primary">Buscar</button>
             </div>
         </form>
         <hr>

@@ -1,12 +1,42 @@
 .thumbnail {
     height: 15em;
     margin: 2px;
+    background-color:#816e40;
 }
+
 .thumbnail .img {
     height: 100%;
-  
 }
-.modal-body .img{
+
+.list-group-item{
+     background-color:#908466;
+}
+
+.modal-body .img {
     height: 40em;
     width: 40em;
+}
+
+#buscar {
+    margin-top: 20px;
+}
+
+body {
+    color: #030302;
+    
+    background-image:url(https://pixabay.com/static/uploads/photo/2016/01/20/21/18/banner-1152385_960_720.png);
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position: center;
+    background-attachment: fixed;
+    background-color:#c1ac79;
+}
+
+#icono {
+    max-height: 150px;
+    margin: auto;
+}
+#titulo{
+    margin-left: 300px;
+    margin-top:95px;
 }
