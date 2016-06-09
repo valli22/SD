@@ -29,7 +29,9 @@ p{
 #buscar {
     margin-top: 20px;
 }
-
+#lista{
+    padding-bottom: 5em;
+}
 body {
     color: #030302;
     background-image:url(https://pixabay.com/static/uploads/photo/2016/01/20/21/18/banner-1152385_960_720.png);

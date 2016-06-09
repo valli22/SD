@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    
+    //Parametros de busqueda
     var content_type = '';
     var minTakenDate = '';
     var tags = [];
@@ -44,6 +45,7 @@ $(document).ready(function () {
         $('#fechaUnix').text($(this).datepicker('getDate').getTime() / 1000 + ' segundos desde el 1 de enero de 1970');
     }
 
+    //Se añade un tag al hacer click en el boton de añadir tag en caso de que el campo de texto no este vacio
     $('#buttonTags').click(function () {
         if ($('#tags').val() != '') {
             tags.push($('#tags').val());
@@ -53,6 +55,7 @@ $(document).ready(function () {
 
     });
 
+    //Se añade la opcion de eliminar un tag añadido
     $('.list-group').click('li button .eliminar', function (event) {
         aux = $(event.target).attr('id').split('_');
         var tagActual = aux[1];
@@ -67,27 +70,21 @@ $(document).ready(function () {
         $(event.target.parentElement.parentElement.parentElement).remove();
     });
 
-
+    
     $('#buscar').click(function () {
         var lat = '';
         var long = '';
-
+        
+        //Se borran las fotos de la busqueda anterior
         $('.borrar').remove();
 
-        if ($('#address').val() != '') {
-            geo = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI($('#address').val()) + '&key=AIzaSyAeLSgaTCd_BcxqvmMovUcRHUIgXtu4Za4'
-            $.ajax({
-                url: geo
-            }).done(function (data) {
-                lat = data.results[0].geometry.location.lat;
-                long = data.results[0].geometry.location.lng;
-            })
-        }
 
+        //Reformateo de la fecha minima de captura
         minTakenDate = $('#dateMin').val();
         aux = minTakenDate.split('/');
         minTakenDate = encodeURI(aux[2] + '-' + aux[1] + '-' + aux[0]);
 
+        //Reformateo de la fecha minima de subida
         minUploadDate = $('#dateUploadMin').val();
         aux = minUploadDate.split('/');
         minUploadDate = encodeURI(aux[2] + '-' + aux[1] + '-' + aux[0]);
@@ -95,6 +92,7 @@ $(document).ready(function () {
 
         text = encodeURI($('#texto').val());
 
+        //Seleccion de tipo de contenido
         if ($('#fotos').is(':checked')) {
             if ($('#captura').is(':checked')) {
                 if ($('#otros').is(':checked')) {
@@ -125,6 +123,7 @@ $(document).ready(function () {
             }
         }
 
+        //Formatear la lista de tags a un string en el cual estan separados por comas
         tagResult = '';
         var j = 0;
         for (var tag of tags) {
@@ -138,6 +137,7 @@ $(document).ready(function () {
 
         var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + api_key + '&user_id=' + user_id + '&min_taken_date=' + minTakenDate + '&tags=' + tagResult + '&text=' + text + '&content_type=' + content_type + '&min_upload_date=' + minUploadDate + '&format=json&nojsoncallback=1';
 
+        //Peticion a la api de google para obtener la latitud y la longitud de la direccion escrita
         if ($('#address').val() !== '') {
             geo = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI($('#address').val()) + '&key=AIzaSyAeLSgaTCd_BcxqvmMovUcRHUIgXtu4Za4'
             $.ajax({
@@ -159,7 +159,7 @@ $(document).ready(function () {
                     alert('La direccion introducida no es valida.')
                 }
             })
-        } else {
+        } else { //En caso de no haber ninguna direccion escrita se buscan todas las fotos sin tener en cuenta su direccion
 
             console.log(url);
             $.ajax({
@@ -169,7 +169,7 @@ $(document).ready(function () {
             })
         }
 
-        //Dejar los parametros vacios
+        //Poner los parametros vacios
 
         $('#texto').val('');
         $('#dateMin').val('');
@@ -184,6 +184,7 @@ $(document).ready(function () {
         $('.list-group-item').remove();
     })
 
+    //Se añade al html todas las imagenes recibidas con un modal para poder agrandarlas
     function mostrarImagenes(fotos) {
         var i = 0;
         var imagenes = '';
